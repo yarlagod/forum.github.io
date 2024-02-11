@@ -25,6 +25,9 @@ var mid = "mess";
 var nid = 0;
 var messageslist;
 fetch('messages.json').then((response) => response.json()).then((json) => messageslist = JSON.parse(json));
+if(messageslist === null){
+  messageslist = [];
+}
 var ind = 0;
 while (ind < messageslist.length)
 {
