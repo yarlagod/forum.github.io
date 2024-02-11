@@ -14,12 +14,34 @@
   <button id="btn_submit" onclick="run()">submit</button>
 </div>
 <script>
+saveFile=function(data, fileName, fileType)  {
+	//use the iframe if you want to target dinosaur browsers; it works with new browsers also
+  const iframe=document.getElementById('local_filesaver') || document.createElement('iframe');
+  var mimeType;
+	switch (filetype)  {
+    case 'txt': 
+    case 'htm': 
+    case 'html': 
+    case 'pdf': 
+    case 'htm': 
+    case 'js':
+    case 'json': mimeType="application/unknown";
+		break;  
+		default: mimeType="";  }
+  data=new File([data], fileName + "." + fileType, {type: mimeType});
+  const url=URL.createObjectURL(data);
+  if (!iframe.id)  {
+    iframe.id='local_filesaver';
+    iframe.style.display='none';
+    document.body.appendChild(iframe);  }
+  iframe.setAttribute('src', url);
+  URL.revokeObjectURL(url);  }
 var mid = "mess";
 var nid = 0;
-var messageslist = JSON.parse(localStorage.getItem('messages'));
-if (localStorage.getItem("messages") === null) {
-  var messageslist = [];
-}
+var messageslist;
+fetch('./data.json')
+    .then((response) => response.json())
+    .then((json) => messageslist = JSON.parse(json));
 var ind = 0;
 while (ind < messageslist.length)
 {
@@ -52,7 +74,7 @@ function write(){
   messageslist.push({id: mid+nid.toString(),name: name,text: text});
   nid += 1;
   messagesjson = JSON.stringify(messageslist);
-  localStorage.setItem('messages', messagesjson);
+  saveFile(messagesjson,"messages.json","json");
 }
 function write2(name,text){
   var message = document.createElement("div");
