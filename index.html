@@ -24,9 +24,7 @@ function download(content, fileName, contentType) {
 var mid = "mess";
 var nid = 0;
 var messageslist;
-fetch('messages.json')
-    .then((response) => response.json())
-    .then((json) => messageslist = JSON.parse(json))
+fetch('messages.json').then((response) => response.json()).then((json) => messageslist = JSON.parse(json))
 var ind = 0;
 while (ind < messageslist.length)
 {
