@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="messages">
+</div>
+<div id="message_write">
+  <textarea placeholder="nickname" id="name_area"></textarea>
+  <br>
+  <textarea placeholder="message text" id="text_area"></textarea>
+  <br>
+  <button id="btn_submit" onclick="run()">submit</button>
+</div>
+<script>
+var mid = "mess";
+var nid = 0;
+var messageslist = JSON.parse(localStorage.getItem('messages'));
+if (localStorage.getItem("messages") === null) {
+  var messageslist = [];
+}
+var ind = 0;
+while (ind < messageslist.length)
+{
+write2(messageslist[ind]["name"],messageslist[ind]["text"]);
+ind += 1;
+}
+var messagesjson;
+function run(){
+  var btn = document.getElementById("btn_submit");
+  btn.onclick = write;
+}
+function write(){
+  name = document.getElementById("name_area").value;
+  text = document.getElementById("text_area").value;
+  var message = document.createElement("div");
+  message.id = mid+nid.toString();
+  message.style.backgroundColor = "#595959";
+  var message_name = document.createElement("h2");
+  message_name.style.padding_bottom = 0;
+  message_name.style.color = "#bfbfbf";
+  message_name.innerHTML = name;
+  var message_text = document.createElement("h4");
+  message_text.innerHTML = text;
+  message_text.style.color = "#bfbfbf";
+  var parent = document.getElementById("messages");
+  parent.appendChild(message);
+  var message1 = document.getElementById(mid+nid.toString());
+  message1.appendChild(message_name);
+  message1.appendChild(message_text);
+  messageslist.push({id: mid+nid.toString(),name: name,text: text});
+  nid += 1;
+  messagesjson = JSON.stringify(messageslist);
+  localStorage.setItem('messages', messagesjson);
+}
+function write2(name,text){
+  var message = document.createElement("div");
+  message.id = mid+nid.toString();
+  message.style.backgroundColor = "#595959";
+  var message_name = document.createElement("h2");
+  message_name.style.padding_bottom = 0;
+  message_name.style.color = "#bfbfbf";
+  message_name.innerHTML = name;
+  var message_text = document.createElement("h4");
+  message_text.innerHTML = text;
+  message_text.style.color = "#bfbfbf";
+  var parent = document.getElementById("messages");
+  parent.appendChild(message);
+  var message1 = document.getElementById(mid+nid.toString());
+  message1.appendChild(message_name);
+  message1.appendChild(message_text);
+  nid += 1;
+}
+</script>
+</body>
+</html>

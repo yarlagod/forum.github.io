@@ -1,0 +1,28 @@
+#name_area{
+  width: 200px;
+  height:20px;
+  background-color: #adadad;
+  resize: none;
+}
+#text_area{
+  width: 200px;
+  height:60px;
+  background-color: #adadad;
+  resize: none;
+}
+#btn_submit{
+  background-color: #adadad;
+  color: #ffffff;
+  width: 100px;
+  height: 40px;
+}
+body{
+  background-color: #262626;
+}
+#message_write{
+  padding-left: 7px;
+  padding-top: 7px;
+  background-color: #919191;
+  width: 213px;
+  height: 150px;
+}
