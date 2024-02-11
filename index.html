@@ -11,7 +11,7 @@
   <br>
   <textarea placeholder="message text" id="text_area"></textarea>
   <br>
-  <button id="btn_submit" onclick="run()" >submit</button>
+  <button id="btn_submit" >submit</button>
 </div>
 <script type="module">
 function download(content, fileName, contentType) {
@@ -83,6 +83,7 @@ function write2(name,text){
   message1.appendChild(message_text);
   nid += 1;
 }
+document.getElementById("submit_button").addEventListener("click", run);
 </script>
 </body>
 </html>
