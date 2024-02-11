@@ -14,28 +14,13 @@
   <button id="btn_submit" onclick="run()">submit</button>
 </div>
 <script>
-saveFile=function(data, fileName, fileType)  {
-	//use the iframe if you want to target dinosaur browsers; it works with new browsers also
-  const iframe=document.getElementById('local_filesaver') || document.createElement('iframe');
-  var mimeType;
-	switch (filetype)  {
-    case 'txt': 
-    case 'htm': 
-    case 'html': 
-    case 'pdf': 
-    case 'htm': 
-    case 'js':
-    case 'json': mimeType="application/unknown";
-		break;  
-		default: mimeType="";  }
-  data=new File([data], fileName + "." + fileType, {type: mimeType});
-  const url=URL.createObjectURL(data);
-  if (!iframe.id)  {
-    iframe.id='local_filesaver';
-    iframe.style.display='none';
-    document.body.appendChild(iframe);  }
-  iframe.setAttribute('src', url);
-  URL.revokeObjectURL(url);  }
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
 var mid = "mess";
 var nid = 0;
 var messageslist;
@@ -74,7 +59,7 @@ function write(){
   messageslist.push({id: mid+nid.toString(),name: name,text: text});
   nid += 1;
   messagesjson = JSON.stringify(messageslist);
-  saveFile(messagesjson,"messages.json","json");
+  download(messagesjson,"messages.json","text/plain");
 }
 function write2(name,text){
   var message = document.createElement("div");
