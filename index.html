@@ -14,7 +14,7 @@
   <button id="btn_submit" >submit</button>
 </div>
 <script type="module">
-saveFile=function(data, fileName, fileType)  {
+var saveFile=function(data, fileName, fileType)  {
   const anchor=document.getElementById('local_filesaver') || document.createElement('a');
   var mimeType;
 	switch (filetype)  {
