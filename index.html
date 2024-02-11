@@ -24,7 +24,7 @@ function download(content, fileName, contentType) {
 var mid = "mess";
 var nid = 0;
 var messageslist;
-import data from './messages.json';
+import data from './messages.json' assert { type: "json" };
 if(data === []){
   messageslist = [];
 }
