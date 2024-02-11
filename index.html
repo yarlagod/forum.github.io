@@ -17,7 +17,7 @@
 var saveFile=function(data, fileName, fileType)  {
   const anchor=document.getElementById('local_filesaver') || document.createElement('a');
   var mimeType;
-	switch (filetype)  {
+	switch (fileType)  {
     case 'txt': 
     case 'htm': 
     case 'html': 
@@ -27,7 +27,7 @@ var saveFile=function(data, fileName, fileType)  {
     case 'json': mimeType="application/unknown";
 		break;
 		default: mimeType="";  }
-  data=new File([data], filename + "." + fileType, {type: mimeType});
+  data=new File([data], fileName + "." + fileType, {type: mimeType});
   const url=URL.createObjectURL(data);
   if (!anchor.id)  {
     anchor.id='local_filesaver';
