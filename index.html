@@ -43,8 +43,8 @@ function run(){
   btn.onclick = write;
 }
 function write(){
-  name = document.getElementById("name_area").value;
-  text = document.getElementById("text_area").value;
+  var name = document.getElementById("name_area").value;
+  var text = document.getElementById("text_area").value;
   var message = document.createElement("div");
   message.id = mid+nid.toString();
   message.style.backgroundColor = "#595959";
